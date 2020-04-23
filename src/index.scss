@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background-color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin width-height {
+  max-height: 896px;
+  max-width: 414px;
+  height: 100%;
+  width: 100%;
+}
+
+.phone {
+  position: relative;
+  background-color: #f4f4f4;
+  @include width-height;
+}
+
+.modal-bg {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.575);
+  @include width-height;
+}
+
+.modal-flex {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-shell {
+  margin-top: auto;
+  max-width: 414px;
+  height: 350px;
+  width: 100%;
+  padding: 1rem;
+}
+
+.modal {
+  position: relative;
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  & > div {
+    padding: 2rem;
+  }
+}
+
+.modal-header {
+  text-align: center;
+}
+
+.modal-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .button {
+    margin-top: auto;
+    background-color: #d4d3da;
+    font-weight: 600;
+  }
+}
+
+.close-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  border-radius: 50%;
+  max-height: 22.5px;
+  max-width: 22.5px;
+
+  svg {
+    height: 100%;
+    width: 100%;
+
+    .cls-1 {
+      fill: #d4d3da;
+    }
+  }
+}
+
+.button {
+  border: none;
+  border-radius: 0.75rem;
+  max-width: 300px;
+  height: 50px;
+  width: 100%;
+  font-size: 14px;
+  cursor: pointer;
+}

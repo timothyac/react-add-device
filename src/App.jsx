@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { CSSTransition } from "react-transition-group";
 
 import { ReactComponent as CloseBtn } from "./assets/close.svg";
@@ -25,11 +25,14 @@ const Modal = ({ setModal }) => {
   // Ignore touch events inside modal, but close on events from bg
   const closeFromBg = (e) => e.target === e.currentTarget && setModal(false);
 
+  const device = "deviceName";
+
   const screens = [
     {
       screen: "add",
       closeable: true,
       header: "Add New Device",
+      description: `Would you like to add ${device} to your account?`,
       icon: "icon.png",
       buttonText: "Continue",
       callback: () => setActiveScreen("finish"),
@@ -37,7 +40,8 @@ const Modal = ({ setModal }) => {
     {
       screen: "finish",
       closeable: false,
-      header: "New Device",
+      header: "Device Added",
+      description: `${device} has been added to your account!`,
       icon: "finish.png",
       buttonText: "Done",
       callback: () => setModal(false),
@@ -61,6 +65,7 @@ const Modal = ({ setModal }) => {
             )}
             <div className="modal-header">
               <h1>{props.header}</h1>
+              <p>{props.description}</p>
             </div>
             <div className="modal-content">
               <p>{props.icon}</p>

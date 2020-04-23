@@ -3,21 +3,24 @@ import { CSSTransition } from "react-transition-group";
 
 import { ReactComponent as CloseBtn } from "./assets/close.svg";
 
-function App() {
+const App = () => {
   const [modal, setModal] = useState(false);
 
   return (
     <div className="app">
       <div className="phone">
-        <h1>Add New Device</h1>
-        <button className="button" onClick={() => setModal(true)}>
-          Add
-        </button>
+        <div className="centerpiece">
+          <h1>NFC Demo</h1>
+          <p>Click 'Add' to add a new device.</p>
+          <button className="button" onClick={() => setModal(true)}>
+            Add
+          </button>
+        </div>
       </div>
       {modal && <Modal setModal={setModal} />}
     </div>
   );
-}
+};
 
 const Modal = ({ setModal }) => {
   const [activeScreen, setActiveScreen] = useState("add");

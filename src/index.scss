@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+
 * {
   margin: 0;
   padding: 0;
@@ -20,9 +22,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+h1 {
+  font-family: -apple-system, "Inter", sans-serif;
+  font-weight: 400;
 }
 
 .app {
@@ -42,8 +44,43 @@ code {
 
 .phone {
   position: relative;
-  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgb(251, 85, 143);
+  background: linear-gradient(
+    140deg,
+    rgba(251, 85, 143, 1) 0%,
+    rgba(111, 56, 181, 1) 100%
+  );
   @include width-height;
+}
+
+.centerpiece {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2rem;
+  height: 200px;
+  width: 300px;
+  padding: 1rem;
+  color: #fff;
+
+  h1 {
+    font-weight: 700;
+  }
+
+  p {
+    margin-top: 1rem;
+  }
+
+  .button {
+    margin-top: auto;
+    background-color: #fff;
+    font-weight: 600;
+  }
 }
 
 .modal-bg {
@@ -78,6 +115,10 @@ code {
 .modal-header {
   text-align: center;
   user-select: none;
+
+  h1 {
+    color: #929194;
+  }
 }
 
 .modal-content {

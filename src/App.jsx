@@ -22,6 +22,9 @@ function App() {
 const Modal = ({ setModal }) => {
   const [activeScreen, setActiveScreen] = useState("add");
 
+  // Ignore touch events inside modal, but close on events from bg
+  const closeFromBg = (e) => e.target === e.currentTarget && setModal(false);
+
   const screens = [
     {
       screen: "add",
@@ -73,8 +76,8 @@ const Modal = ({ setModal }) => {
 
   return (
     <div className="modal-bg">
-      <div className="modal-flex">
-        <div className="modal-shell">
+      <div className="modal-flex" onClick={closeFromBg}>
+        <div className="modal-shell" onClick={closeFromBg}>
           <div className="modal">
             {screens.map((obj, i) => (
               <Screen key={i} props={obj} />

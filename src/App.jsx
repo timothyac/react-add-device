@@ -50,32 +50,25 @@ const Modal = ({ setModal }) => {
 
   const Screen = ({ props }) => {
     return (
-      <CSSTransition
-        in={activeScreen === props.screen}
-        unmountOnExit
-        timeout={200}
-        classNames="screen-primary"
-      >
-        <div className="screen">
-          <div className="screen-contents">
-            {props.closeable && (
-              <button className="close-button">
-                <CloseBtn onClick={() => setModal(false)} />
-              </button>
-            )}
-            <div className="modal-header">
-              <h1>{props.header}</h1>
-              <p>{props.description}</p>
-            </div>
-            <div className="modal-content">
-              <p>{props.icon}</p>
-              <button className="button" onClick={props.callback}>
-                {props.buttonText}
-              </button>
-            </div>
+      <div className="screen">
+        <div className="screen-contents">
+          {props.closeable && (
+            <button className="close-button">
+              <CloseBtn onClick={() => setModal(false)} />
+            </button>
+          )}
+          <div className="modal-header">
+            <h1>{props.header}</h1>
+            <p>{props.description}</p>
+          </div>
+          <div className="modal-content">
+            <p>{props.icon}</p>
+            <button className="button" onClick={props.callback}>
+              {props.buttonText}
+            </button>
           </div>
         </div>
-      </CSSTransition>
+      </div>
     );
   };
 
@@ -85,7 +78,15 @@ const Modal = ({ setModal }) => {
         <div className="modal-shell" onClick={closeFromBg}>
           <div className="modal">
             {screens.map((obj, i) => (
-              <Screen key={i} props={obj} />
+              <CSSTransition
+                in={activeScreen === obj.screen}
+                unmountOnExit
+                timeout={150}
+                classNames="screen-primary"
+                key={i}
+              >
+                <Screen props={obj} />
+              </CSSTransition>
             ))}
           </div>
         </div>

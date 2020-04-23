@@ -1,34 +1,57 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
+import { useLocation, useHistory } from "react-router-dom";
 
 import { ReactComponent as CloseBtn } from "./assets/close.svg";
 
+// Custom hook from react-router-dom
+const useQuery = () => new URLSearchParams(useLocation().search);
+
+// Generate random device number
+const getRandomNum = () => Math.floor(Math.random() * (101 - 999) + 101);
+
 const App = () => {
   const [modal, setModal] = useState(false);
+  let history = useHistory();
+  let query = useQuery().get("add");
+
+  // Check for query params on load
+  useEffect(() => {
+    if (query) {
+      setModal(true);
+    }
+  }, [query]);
 
   return (
     <div className="app">
       <div className="phone">
         <div className="centerpiece">
           <h1>NFC Demo</h1>
-          <p>Click 'Add' to add a new device.</p>
-          <button className="button" onClick={() => setModal(true)}>
-            Add
+          <p>
+            The demo works by checking for a query param. If it detects the
+            query param then it will pop up a modal to walk you through the
+            process. If you click the start button below, it will refresh the
+            page with a query param in the url.
+          </p>
+          <button
+            className="button"
+            onClick={() => history.push(`/?add=device${getRandomNum()}`)}
+          >
+            Start
           </button>
         </div>
       </div>
-      {modal && <Modal setModal={setModal} />}
+      {modal && <Modal setModal={setModal} device={query} />}
     </div>
   );
 };
 
-const Modal = ({ setModal }) => {
+const Modal = ({ setModal, device }) => {
   const [activeScreen, setActiveScreen] = useState("add");
+  let history = useHistory();
 
   // Ignore touch events inside modal, but close on events from bg
   const closeFromBg = (e) => e.target === e.currentTarget && setModal(false);
-
-  const device = "deviceName";
 
   const screens = [
     {
@@ -47,7 +70,13 @@ const Modal = ({ setModal }) => {
       description: `${device} has been added to your account!`,
       icon: "finish.png",
       buttonText: "Done",
-      callback: () => setModal(false),
+      callback: () => {
+        // Close modal
+        setModal(false);
+
+        // Redirect to home with query
+        history.push("/");
+      },
     },
   ];
 

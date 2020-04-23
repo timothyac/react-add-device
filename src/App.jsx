@@ -22,68 +22,63 @@ function App() {
 const Modal = ({ setModal }) => {
   const [activeScreen, setActiveScreen] = useState("add");
 
-  const createScreen = {
-    closeable: true,
-    header: "Add New Device",
-    icon: "icon.png",
-    buttonText: "Continue",
-  };
+  const screens = [
+    {
+      screen: "add",
+      closeable: true,
+      header: "Add New Device",
+      icon: "icon.png",
+      buttonText: "Continue",
+      callback: () => setActiveScreen("finish"),
+    },
+    {
+      screen: "finish",
+      closeable: false,
+      header: "New Device",
+      icon: "finish.png",
+      buttonText: "Done",
+      callback: () => setModal(false),
+    },
+  ];
 
-  const finishScreen = {
-    closeable: false,
-    header: "New Device",
-    icon: "finish.png",
-    buttonText: "Finish",
-  };
-
-  function Screen({ props, callback }) {
+  const Screen = ({ props }) => {
     return (
-      <div className="screen">
-        <div className="screen-contents">
-          {props.closeable && (
-            <button className="close-button">
-              <CloseBtn onClick={() => setModal(false)} />
-            </button>
-          )}
-          <div className="modal-header">
-            <h1>{props.header}</h1>
-          </div>
-          <div className="modal-content">
-            <p>{props.icon}</p>
-            <button className="button" onClick={callback}>
-              {props.buttonText}
-            </button>
+      <CSSTransition
+        in={activeScreen === props.screen}
+        unmountOnExit
+        timeout={200}
+        classNames="screen-primary"
+      >
+        <div className="screen">
+          <div className="screen-contents">
+            {props.closeable && (
+              <button className="close-button">
+                <CloseBtn onClick={() => setModal(false)} />
+              </button>
+            )}
+            <div className="modal-header">
+              <h1>{props.header}</h1>
+            </div>
+            <div className="modal-content">
+              <p>{props.icon}</p>
+              <button className="button" onClick={props.callback}>
+                {props.buttonText}
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      </CSSTransition>
     );
-  }
+  };
 
   return (
     <div className="modal-bg">
       <div className="modal-flex">
         <div className="modal-shell">
           <div className="modal">
-            <CSSTransition
-              in={activeScreen === "add"}
-              unmountOnExit
-              timeout={200}
-              classNames="screen-primary"
-            >
-              <Screen
-                props={createScreen}
-                callback={() => setActiveScreen("finish")}
-              />
-            </CSSTransition>
-
-            <CSSTransition
-              in={activeScreen === "finish"}
-              unmountOnExit
-              timeout={200}
-              classNames="screen-primary"
-            >
-              <Screen props={finishScreen} callback={() => setModal(false)} />
-            </CSSTransition>
+            {screens.map((obj, i) => (
+              <Screen key={i} props={obj} />
+            ))}
           </div>
         </div>
       </div>

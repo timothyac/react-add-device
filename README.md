@@ -1,68 +1,38 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# react-add-device
 
-## Available Scripts
+> "you can't just copy Apple UI". CSS machine go brrr - Aristotle
 
-In the project directory, you can run:
+## What is it
 
-### `yarn start`
+TLDR: Replica of syncing bluetooth devices on iOS.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I'm a huge fan of Apple's bluetooth pairing service. Syncing Airpods or other Apple devices is not only elegant but highly functional. Unfortunately the browser\* is not given access to things like bluetooth. The way this works is by query parameters. If you load `http://localhost:3000/?add=Airpods+Pro` it will trigger the popup and walk you through the 2 step process.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Since Apple has [no intention](https://webkit.org/status/#feature-web-bluetooth) of supporting bluetooth in the browser anytime soon, my idea would be that a user's device could have an NFC tag on it, which links them to a dashboard that presents them with this. Of course that has it's own set of problems.
 
-### `yarn test`
+\*_Chromium browsers do support bluetooth_
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Development
 
-### `yarn build`
+Built with [react](https://reactjs.org/). You'll need [node.js](http://nodejs.org/) & [yarn](https://yarnpkg.com/).
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Utilizes these great libraries [react-router-dom](https://reacttraining.com/react-router/web/guides/quick-start) and [react-transition-group](https://reactcommunity.org/react-transition-group/).
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```bash
+# clone repo
+git clone https://github.com/SunstroUS/react-add-device.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# install dependencies
+yarn install
 
-### `yarn eject`
+# start app on port 3000
+yarn start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Current look
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img src="media/screenshot.png" width="600">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## License
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+<a href="/LICENSE.md">MIT</a>

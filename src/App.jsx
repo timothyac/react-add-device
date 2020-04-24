@@ -3,12 +3,10 @@ import { CSSTransition } from "react-transition-group";
 import { useLocation, useHistory } from "react-router-dom";
 
 import { ReactComponent as CloseBtn } from "./assets/close.svg";
+import airpods from "./assets/airpods-pro-cleaner.JPG";
 
 // Custom hook from react-router-dom
 const useQuery = () => new URLSearchParams(useLocation().search);
-
-// Generate random device number
-const getRandomNum = () => Math.floor(Math.random() * (101 - 999) + 101);
 
 const App = () => {
   const [modal, setModal] = useState(false);
@@ -35,7 +33,7 @@ const App = () => {
           </p>
           <button
             className="button"
-            onClick={() => history.push(`/?add=device${getRandomNum()}`)}
+            onClick={() => history.push(`/?add=Airpods+Pro`)}
           >
             Start
           </button>
@@ -57,17 +55,16 @@ const Modal = ({ setModal, device }) => {
     {
       screen: "add",
       closeable: true,
-      header: "Add New Device",
-      description: `Would you like to add ${device} to your account?`,
+      header: "AirPods Pro",
       icon: "icon.png",
-      buttonText: "Continue",
+      buttonText: "Connect",
       callback: () => setActiveScreen("finish"),
     },
     {
       screen: "finish",
       closeable: false,
       header: "Device Added",
-      description: `${device} has been added to your account!`,
+      description: `${device} successfully synced!`,
       icon: "finish.png",
       buttonText: "Done",
       callback: () => {
@@ -91,10 +88,12 @@ const Modal = ({ setModal, device }) => {
           )}
           <div className="modal-header">
             <h1>{props.header}</h1>
-            <p>{props.description}</p>
           </div>
           <div className="modal-content">
-            <p>{props.icon}</p>
+            <div className="modal-image">
+              <img src={airpods} alt="airpods" />
+              <p>{props.description}</p>
+            </div>
             <button className="button" onClick={props.callback}>
               {props.buttonText}
             </button>

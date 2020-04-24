@@ -26,7 +26,7 @@ const App = () => {
     <div className="app">
       <div className="phone">
         <div className="centerpiece">
-          <h1>NFC Demo</h1>
+          <h1>react-add-device</h1>
           <p>
             The demo works by checking for a query param. If it detects the
             query param then it will pop up a modal to walk you through the

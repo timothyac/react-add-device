@@ -97,9 +97,9 @@ h1 {
 .modal-shell {
   margin-top: auto;
   max-width: 414px;
-  height: 350px;
+  height: 455px;
   width: 100%;
-  padding: 1rem;
+  padding: 0.75rem;
 }
 
 .modal {
@@ -115,7 +115,8 @@ h1 {
   user-select: none;
 
   h1 {
-    color: #929194;
+    font-size: 38px;
+    color: #545454;
   }
 }
 
@@ -128,8 +129,23 @@ h1 {
 
   .button {
     margin-top: auto;
-    background-color: #d4d3da;
-    font-weight: 600;
+    min-height: 50px;
+    background-color: #e5e6eb;
+    font-weight: 500;
+  }
+}
+
+.modal-image {
+  // Dependent on your image size
+  min-height: 200px;
+  height: 100%;
+
+  img {
+    height: 200px;
+  }
+
+  p {
+    text-align: center;
   }
 }
 
@@ -148,7 +164,10 @@ h1 {
     width: 100%;
 
     .cls-1 {
-      fill: #d4d3da;
+      fill: #e5e6eb;
+    }
+    .cls-2 {
+      stroke: #838287;
     }
   }
 }
@@ -159,7 +178,7 @@ h1 {
   max-width: 300px;
   height: 50px;
   width: 100%;
-  font-size: 14px;
+  font-size: 18px;
   cursor: pointer;
 }
 
@@ -172,6 +191,14 @@ h1 {
 
   & > div {
     padding: 2rem;
+  }
+
+  .modal-header {
+    padding-bottom: 1rem;
+  }
+
+  .modal-content {
+    padding-top: 1rem;
   }
 }
 
@@ -203,4 +230,53 @@ h1 {
   opacity: 0.1;
   position: absolute;
   z-index: 9;
+}
+
+@media screen and (max-width: 320px) {
+  .modal {
+    border-radius: 1rem;
+  }
+
+  .modal-shell {
+    padding: 0.5rem;
+    height: 325px;
+  }
+
+  .modal-header {
+    h1 {
+      font-size: 32px;
+    }
+  }
+
+  .modal-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 150px;
+
+    img {
+      height: 150px;
+    }
+  }
+
+  .close-button {
+    top: 12.5px;
+    right: 12.5px;
+  }
+
+  .screen-contents {
+    & > div {
+      padding: 0.75rem;
+    }
+
+    .modal-header {
+      padding-top: 1rem;
+      padding-bottom: 0.25rem;
+    }
+
+    .modal-content {
+      padding-top: 0.25rem;
+    }
+  }
 }

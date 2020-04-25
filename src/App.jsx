@@ -20,26 +20,40 @@ const App = () => {
     }
   }, [query]);
 
+  const airpodFlipper = () => {
+    if (query === "Airpods Pro") {
+      history.push(`/?add=Airpods`);
+    } else {
+      history.push(`/?add=Airpods+Pro`);
+    }
+  };
+
   return (
     <div className="app">
       <div className="phone">
-        <div className="centerpiece">
-          <h1>react-add-device</h1>
-          <p>
-            The demo works by checking for a query param. If it detects the
-            query param then it will pop up a modal to walk you through the
-            process. If you click the start button below, it will refresh the
-            page with a query param in the url.
-          </p>
-          <button
-            className="button"
-            onClick={() => history.push(`/?add=Airpods+Pro`)}
-          >
-            Start
-          </button>
+        <div className="header">
+          <div className="centerpiece">
+            <h1>react-add-device</h1>
+            <p>
+              The demo works by checking for a query param. If it detects the
+              query param then it will pop up a modal to walk you through the
+              process. If you click the start button below, it will refresh the
+              page with a query param in the url.
+            </p>
+            <button className="button" onClick={airpodFlipper}>
+              Start
+            </button>
+          </div>
         </div>
       </div>
-      {modal && <Modal setModal={setModal} device={query} />}
+      <CSSTransition
+        in={modal}
+        unmountOnExit
+        timeout={150}
+        classNames="modal-bg"
+      >
+        <Modal setModal={setModal} device={query} />
+      </CSSTransition>
     </div>
   );
 };

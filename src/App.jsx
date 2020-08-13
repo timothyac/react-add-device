@@ -34,7 +34,7 @@ const App = () => {
           <div className="centerpiece">
             <h1>react-add-device</h1>
             <p>
-              Welcome to my demo, you'll notice the frame is based off a typical
+              Welcome to the demo, you'll notice the frame is based off a typical
               phone size. The demo works by checking for a query param. If it
               detects the query param then it will pop up a modal to walk you
               through the process. If you click the start button below, it will
